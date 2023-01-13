@@ -7,15 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/search")
-public class CarSearch extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/search.jsp");
-    }
+@WebServlet("/delete")
+public class CarDeleteServlet extends HttpServlet {
 
+    CarInterface service = new CarService();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Object car = req.getAttribute("cars");
+        String id = req.getParameter("id");
+        service.delete(Integer.parseInt(id));
+        req.getRequestDispatcher("/all").forward(req, resp);
     }
 }

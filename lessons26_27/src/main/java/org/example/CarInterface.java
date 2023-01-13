@@ -10,4 +10,6 @@ public interface CarInterface {
     List<Car> getAll();
 
     Car getById(int id);
+
+    void update(int id);
 }

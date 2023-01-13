@@ -9,9 +9,9 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/all")
-public class CarList extends HttpServlet {
+public class CarListServlet extends HttpServlet {
 
-    CarInterface carInterface = new CarService();
+    CarInterface service = new CarService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -21,7 +21,7 @@ public class CarList extends HttpServlet {
             populateCars(req);
             req.getRequestDispatcher("/add.jsp").forward(req, resp);
         } else {
-            List<Car> byId = (List<Car>) carInterface.getById(Integer.parseInt(id));
+            List<Car> byId = (List<Car>) service.getById(Integer.parseInt(id));
             req.setAttribute("cars", byId);
         }
         
@@ -33,7 +33,7 @@ public class CarList extends HttpServlet {
         if (search == null) {
             populateCars(req);
         } else {
-            List<Car> byId = (List<Car>) carInterface.getById(Integer.parseInt(search));
+            List<Car> byId = (List<Car>) service.getById(Integer.parseInt(search));
             req.setAttribute("cars", byId);
         }
 
@@ -41,6 +41,6 @@ public class CarList extends HttpServlet {
     }
 
     private void populateCars(HttpServletRequest request) {
-        request.setAttribute("cars", carInterface.getAll());
+        request.setAttribute("cars", service.getAll());
     }
 }

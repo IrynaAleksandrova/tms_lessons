@@ -9,14 +9,9 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/create")
-public class CarCreate extends HttpServlet {
+public class CarCreateServlet extends HttpServlet {
 
-    CarInterface carInterface = new CarService();
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/create.jsp");
-    }
+    CarInterface service = new CarService();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
@@ -27,10 +22,11 @@ public class CarCreate extends HttpServlet {
 
         Car car = new Car(id, model, year, cost);
 
-        carInterface.save(car);
-        List<Car> all = carInterface.getAll();
-        req.setAttribute("cars", all);
+        service.save(car);
+//        List<Car> all = service.getAll();
+//        req.setAttribute("cars", all);
 
+//        req.getRequestDispatcher("/create.jsp").forward(req,resp);
         resp.sendRedirect("/");
     }
 }

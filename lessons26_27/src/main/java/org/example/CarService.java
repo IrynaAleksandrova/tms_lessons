@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarService implements CarInterface{
+public class CarService implements CarInterface {
     StartupServlet servlet = new StartupServlet();
 
     @Override
@@ -16,6 +16,7 @@ public class CarService implements CarInterface{
             preparedStatement.setString(2, car.getModel());
             preparedStatement.setString(3, car.getYear());
             preparedStatement.setInt(4, car.getCost());
+
             preparedStatement.execute();
         } catch (Exception exc) {
             throw new RuntimeException("SQL ADD FAILED");
@@ -27,7 +28,7 @@ public class CarService implements CarInterface{
         try {
             Connection connection = servlet.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("delete from car where id = ?");
-            preparedStatement.setLong(1, id);
+            preparedStatement.setInt(1, id);
 
             preparedStatement.execute();
         } catch (Exception exc) {
@@ -57,6 +58,19 @@ public class CarService implements CarInterface{
             return (Car) get(resultSet);
         } catch (Exception exc) {
             throw new RuntimeException("SQL EXCEPTION");
+        }
+    }
+
+    @Override
+    public void update(int id) {
+        try {
+            Connection connection = servlet.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("update car set cost = ? where id = ?;");
+            preparedStatement.setInt(1, id);
+
+            preparedStatement.execute();
+        } catch (Exception exc) {
+            throw new RuntimeException("SQL UPDATE FAILED");
         }
     }
 
