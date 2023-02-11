@@ -1,16 +1,15 @@
 package org.example.service.impl;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.example.domain.Pair;
 import org.example.service.CheckService;
 import org.example.service.RaceService;
 import org.example.service.ResultRaceService;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
-@NoArgsConstructor
+@Service
 @AllArgsConstructor
 public class RaceServiceImpl implements RaceService {
     private ResultRaceService resultRace;

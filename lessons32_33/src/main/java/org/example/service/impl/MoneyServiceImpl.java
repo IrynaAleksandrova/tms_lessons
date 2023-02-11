@@ -1,7 +1,9 @@
 package org.example.service.impl;
 
 import org.example.service.MoneyService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MoneyServiceImpl implements MoneyService {
     private int money;
 

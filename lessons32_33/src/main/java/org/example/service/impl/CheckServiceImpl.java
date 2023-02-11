@@ -2,9 +2,10 @@ package org.example.service.impl;
 
 import org.example.domain.Pair;
 import org.example.service.CheckService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class CheckServiceImpl implements CheckService {
     @Override
     public void checkWinner(int race, List<Pair> racer) {
