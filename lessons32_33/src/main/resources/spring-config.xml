@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="org.example.domain.Horse" name="black">
+        <constructor-arg name="name" value="Black"/>
+    </bean>
+    <bean class="org.example.domain.Horse" name="bob">
+        <constructor-arg name="name" value="Bob"/>
+    </bean>
+    <bean class="org.example.domain.Horse" name="red">
+        <constructor-arg name="name" value="Red"/>
+    </bean>
+    <bean class="org.example.domain.Horse" name="chicle">
+        <constructor-arg name="name" value="Chicle"/>
+    </bean>
+
+    <bean class="org.example.domain.Rider" name="mike">
+        <constructor-arg name="name" value="Mike"/>
+    </bean>
+    <bean class="org.example.domain.Rider" name="will">
+        <constructor-arg name="name" value="Will"/>
+    </bean>
+    <bean class="org.example.domain.Rider" name="joe">
+        <constructor-arg name="name" value="Joe"/>
+    </bean>
+    <bean class="org.example.domain.Rider" name="driver">
+        <constructor-arg name="name" value="Driver"/>
+    </bean>
+
+    <bean class="org.example.domain.Pair" name="pair1">
+        <constructor-arg index="0" ref="black"/>
+        <constructor-arg index="1" ref="mike"/>
+    </bean>
+    <bean class="org.example.domain.Pair" name="pair2">
+        <constructor-arg name="horse" ref="bob"/>
+        <constructor-arg name="rider" ref="will"/>
+    </bean>
+    <bean class="org.example.domain.Pair" name="pair3">
+        <constructor-arg name="horse" ref="red"/>
+        <constructor-arg name="rider" ref="joe"/>
+
+    </bean>
+    <bean class="org.example.domain.Pair" name="pair4">
+        <constructor-arg name="horse" ref="chicle"/>
+        <constructor-arg name="rider" ref="driver"/>
+
+    </bean>
+
+    <bean class="org.example.service.impl.MoneyServiceImpl" name="moneyService"></bean>
+    <bean class="org.example.service.impl.RaceServiceImpl" name="raceService" autowire="constructor"></bean>
+    <bean class="org.example.service.impl.CheckServiceImpl"></bean>
+    <bean class="org.example.service.impl.ResultRaceServiceImpl"></bean>
+    <bean class="org.example.service.impl.HorseServiceImpl" autowire="constructor"></bean>
+</beans>
