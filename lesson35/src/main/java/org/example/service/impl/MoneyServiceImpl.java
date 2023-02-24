@@ -10,6 +10,8 @@ public class MoneyServiceImpl implements MoneyService {
 
     private int money;
 
+    private int balance = 100;
+
     @Override
     public void sumMoney() {
         money = money * 2;
@@ -19,4 +21,5 @@ public class MoneyServiceImpl implements MoneyService {
     public void minMoney(int count) {
         money = money - count;
     }
+
 }

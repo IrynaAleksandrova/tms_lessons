@@ -6,6 +6,10 @@ public interface MoneyService {
 
     int getMoney();
 
+    void setBalance(int money);
+
+    int getBalance();
+
     void sumMoney();
 
     void minMoney(int count);

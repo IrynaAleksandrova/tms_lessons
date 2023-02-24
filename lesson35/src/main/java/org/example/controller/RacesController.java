@@ -24,14 +24,12 @@ public class RacesController {
 
     private RacesService racesServiceImpl;
     private MoneyService moneyServiceImpl;
-
-    private static Integer balance = 100;
     private List<Pair> pairs;
 
 
     @GetMapping()
     public String home(Model model) {
-        model.addAttribute("balance", balance);
+        model.addAttribute("balance", moneyServiceImpl.getBalance());
         model.addAttribute("pairs", pairs);
         return "home";
     }
@@ -41,7 +39,7 @@ public class RacesController {
         pairs.add(new Pair(new Horse(nameHorse), new Rider(nameRider)));
 
         model.addAttribute("pairs", pairs);
-        model.addAttribute("balance", balance);
+        model.addAttribute("balance", moneyServiceImpl.getBalance());
         return "home";
     }
 
@@ -51,13 +49,13 @@ public class RacesController {
 
         int money = moneyServiceImpl.getMoney();
 
-        if (bet <= this.balance) {
+        if (bet <= this.moneyServiceImpl.getBalance()){
             if (money > 0) {
-                balance = balance + money;
+                moneyServiceImpl.setBalance(moneyServiceImpl.getBalance() + money);
                 moneyServiceImpl.setMoney(0);
                 model.addAttribute("result", "You are winner!");
             } else {
-                balance = balance - bet;
+                moneyServiceImpl.setBalance(moneyServiceImpl.getBalance() - bet);
                 model.addAttribute("result", "You are loser!");
             }
         } else {
@@ -65,7 +63,7 @@ public class RacesController {
         }
 
         model.addAttribute("pairs", pairs);
-        model.addAttribute("balance", balance);
+        model.addAttribute("balance", moneyServiceImpl.getBalance());
         return "home";
     }
 

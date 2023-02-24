@@ -13,8 +13,9 @@ import java.util.List;
 @AllArgsConstructor
 public class RacesServiceImpl implements RacesService {
 
-    private MoneyService moneyService;
+    private MoneyService moneyServiceImpl;
     private ResultService resultService;
+
 
     @Override
     public List<Pair> race(List<Pair> racer) {
@@ -34,16 +35,16 @@ public class RacesServiceImpl implements RacesService {
     public void start(List<Pair> racers, Integer pairNumber, Integer money) {
         Pair chosen = racers.get((pairNumber - 1));
 
-        moneyService.setMoney(money);
+        moneyServiceImpl.setMoney(money);
 
         List<Pair> result = race(racers);
 
         boolean isWinner = resultService.isWinner(result, chosen);
 
         if (isWinner) {
-            moneyService.sumMoney();
+            moneyServiceImpl.sumMoney();
         } else {
-            moneyService.minMoney(money);
+            moneyServiceImpl.minMoney(money);
         }
     }
 
