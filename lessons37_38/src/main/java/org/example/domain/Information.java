@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Data
@@ -12,9 +11,6 @@ import javax.persistence.Embeddable;
 @AllArgsConstructor
 @Embeddable
 public class Information {
-
-    @Column(name = "programming_language")
-    private String programmingLanguage;
 
     private Integer experience;
 

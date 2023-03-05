@@ -1,6 +1,7 @@
 package org.example.config;
 
 import org.example.domain.Course;
+import org.example.domain.Student;
 import org.example.domain.Teacher;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
@@ -36,6 +37,7 @@ public class DataBaseConfig {
 
         configuration.addAnnotatedClass(Teacher.class);
         configuration.addAnnotatedClass(Course.class);
+        configuration.addAnnotatedClass(Student.class);
 
         return configuration.buildSessionFactory();
     }
